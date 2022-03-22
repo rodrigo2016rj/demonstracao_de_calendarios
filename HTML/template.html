@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="{$url_base_template}/CSS/{$tema_template}/template.css" type="text/css" rel="stylesheet"/>
+    <script src="{$url_base_template}/JS/template/interacoes.js"></script>
+    {block name=head_especifico}{/block}
+  </head>
+  <body>
+    <div id="div_cabecalho_template">
+      <h1 id="h1_titulo_do_sistema_template">
+        <span>Demonstração de Calendários</span>
+      </h1>
+      <nav id="nav_menu_01_template">
+        <a id="link_pagina_inicial_template" class="opcao_do_menu_01" 
+           href="./pagina_inicial.php">Início</a>
+        <a id="link_calendario_javascript_puro_template" class="opcao_do_menu_01" 
+           href="./calendario_javascript_puro.php">JavaScript</a>
+        <a id="link_calendario_jquery_template" class="opcao_do_menu_01" 
+           href="./calendario_jquery.php">JQuery</a>
+        <a id="link_calendario_react_template" class="opcao_do_menu_01" 
+           href="./calendario_react.php">React</a>
+      </nav>
+    </div>
+    <div id="div_tronco_template">
+      {block name=tronco}{/block}
+    </div>
+    <div id="div_rodape_template">
+      <div id="div_autor_do_sistema_template">
+        <span>Este sistema foi feito por Rodrigo Diniz da Silva.</span>
+      </div>
+      <div id="div_tecnologias_do_sistema_template">
+        <span>Este sistema usa PHP, Smarty, JavaScript, JQuery e React.</span>
+      </div>
+    </div>
+  </body>
+</html>
