@@ -1,3 +1,9 @@
+## Sobre
+<p>Este sistema é apenas uma demonstração dos calendários que eu fiz de diversas formas.</p>
+<p>Este sistema serve para divulgar o meu trabalho e também serve como material de estudo para outros programadores.</p>
+<p>Este sistema foi feito por mim, mas qualquer pessoa é livre para reutilizar e/ou modificar.</p>
+<br/>
+
 ## Instruções
 <p>Este sistema foi configurado para Servidor Apache, para ver o resultado em um ambiente de desenvolvimento você precisará:</p>
 <ul>

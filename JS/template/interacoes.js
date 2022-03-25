@@ -33,4 +33,17 @@ window.addEventListener("load", function(){
   altura_minima -= parseInt(estilo_computado.marginTop, 10);
   
   div_tronco_template.style.minHeight = altura_minima + "px";
+  
+  /* Removendo o foco dos botões quando o cursor sai de cima deles e após o clique: */
+  const botoes = document.querySelectorAll("button");
+  
+  for(let i = 0; i < botoes.length; i++){
+    botoes[i].addEventListener("mouseleave", remover_foco);
+    botoes[i].addEventListener("click", remover_foco);
+  }
+  
+  function remover_foco(evento){
+    const tag_que_disparou_o_evento = evento.currentTarget;
+    tag_que_disparou_o_evento.blur();
+  }
 });

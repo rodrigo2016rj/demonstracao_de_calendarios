@@ -7,6 +7,67 @@ body{
   font-size: 12pt;
 }
 
+/* Calendário modelo */
+.calendario{
+  position: absolute;
+  border: 1px solid #9090C8;
+  padding: 12px 8px;
+  background-color: #F0F0FF;
+  z-index: 500;
+}
+.titulo_do_calendario{
+  font-size: 14pt;
+  text-align: center;
+}
+.caixa_de_selecao_de_mes_do_calendario{
+  margin-left: 9px;
+  width: 120px;
+}
+.caixa_de_selecao_de_ano_do_calendario{
+  margin-left: 9px;
+  width: 80px;
+}
+.corpo_do_calendario{
+  margin-top: 12px;
+}
+.dias_do_calendario{
+  min-width: 329px;
+  max-width: 329px;
+  overflow: hidden;
+}
+.celula_do_calendario{
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 3px;
+  border: 1px solid transparent;
+  min-width: calc(47px - 5px - 2px);
+  max-width: calc(47px - 5px - 2px);
+  min-height: 23px;
+  max-height: 23px;
+  text-align: center;
+}
+.dia_do_calendario>span{
+  position: relative;
+  top: 2px;
+}
+.dia_do_calendario:hover{
+  border: 1px solid #404070;
+  cursor: pointer;
+}
+.dia_escolhido,
+.dia_escolhido:hover{
+  border: 1px solid #404070;
+  background-color: #404070;
+  color: #FFF;
+}
+.botoes_do_calendario{
+  margin-top: 2px;
+  text-align: right;
+}
+.botao_do_calendario{
+  background-color: #FFF !important;
+}
+
 /* Cabeçalho e menus do sistema: */
 #div_cabecalho_template{
   margin-right: auto;
@@ -90,7 +151,6 @@ body{
   text-align: center;
 }
 
-
 /* Classes para qualquer tag: */
 .tag_oculta{
   display: none !important;
@@ -108,7 +168,8 @@ input[type="text"]{
   padding: 4px 5px;
   width: calc(212px - 2px - 10px);
   max-width: calc(100% - 2px - 10px);
-  color: #303030;
+  background-color: #FFF;
+  color: #000;
   font-family: Verdana, Tahoma, Times New Roman, serif;
   font-size: 11pt;
   appearance: none;
@@ -119,7 +180,8 @@ input:-webkit-autofill{
 }
 input[type="text"]:hover,
 input[type="text"]:focus{
-  border: 1px solid #404080;
+  border: 1px solid #484880;
+  background-color: #F8F8F8;
   appearance: none;
   outline: none;
 }
@@ -132,7 +194,7 @@ button{
   padding: 4px 8px 3px 7px;
   background-color: #FFF;
   color: #505080;
-  font-family: Tahoma, Verdana, Times New Roman, serif;
+  font-family: Verdana, Tahoma, Times New Roman, serif;
   font-size: 11pt;
   cursor: pointer;
 }
@@ -145,14 +207,13 @@ button:hover{
   appearance: none;
   outline: none;
 }
-input[type="submit"]:focus,
-input[type="reset"]:focus,
 button:focus{
   border-top: 2px solid #404080;
   border-right: 1px solid #404080;
   border-bottom: 1px solid #404080;
   border-left: 2px solid #404080;
   padding: 5px 7px 2px 8px;
+  background-color: #F0F0FF;
   appearance: none;
   outline: none;
 }
@@ -171,6 +232,7 @@ select{
 select:hover,
 select:focus{
   border: 1px solid #404080;
+  background-color: #FFF;
   outline: none;
 }
 p{
