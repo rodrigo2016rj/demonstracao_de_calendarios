@@ -224,7 +224,7 @@ window.addEventListener("load", function(){
   /* Ocultando popups */
   div_modelo_calendario_template.addEventListener("click", function(){
     ocultar_div_modelo_calendario_template = false;
-	});
+  });
   
   document.addEventListener("click", function(){
     if(ocultar_div_modelo_calendario_template){
@@ -232,5 +232,5 @@ window.addEventListener("load", function(){
     }else{
       ocultar_div_modelo_calendario_template = true;
     }
-	});
+  });
 });
