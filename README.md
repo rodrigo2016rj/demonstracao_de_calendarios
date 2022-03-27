@@ -1,6 +1,11 @@
 ## Sobre
 <p>Este sistema é apenas uma demonstração dos calendários que eu fiz de diversas formas.</p>
 <p>Este sistema serve para divulgar o meu trabalho e também serve como material de estudo para outros programadores.</p>
+<p>Este sistema inclui:</p>
+<ul>
+<li>Calendário feito com Javascript puro, ou seja sem uso de frameworks para Javascript.</li>
+<li>Calendário feito com jQuery.</li>
+</ul>
 <p>Este sistema foi feito por mim, mas qualquer pessoa é livre para reutilizar e/ou modificar.</p>
 <br/>
 
