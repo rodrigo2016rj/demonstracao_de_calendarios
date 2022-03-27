@@ -6,7 +6,6 @@ window.addEventListener("load", function(){
   const div_modelo_calendario_template = document.getElementById("div_modelo_calendario_template");
   const caixa_de_selecao_de_mes_do_calendario_template = document.getElementById("caixa_de_selecao_de_mes_do_calendario_template");
   const caixa_de_selecao_de_ano_do_calendario_template = document.getElementById("caixa_de_selecao_de_ano_do_calendario_template");
-  const div_dias_do_calendario_template = document.getElementById("div_dias_do_calendario_template");
   const celulas_do_calendario = document.getElementsByClassName("celula_do_calendario");
   const botao_confirmar_do_calendario_template = document.getElementById("botao_confirmar_do_calendario_template");
   
