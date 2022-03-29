@@ -1,0 +1,38 @@
+{extends file='../template.html'}
+{block name=head_especifico}
+<link href="{$url_base_template}/CSS/{$tema_template}/calendario_react.css" type="text/css" rel="stylesheet"/>
+<script src="{$url_base_template}/JS/React 17.0.2 Comprimido.js"></script>
+<script src="{$url_base_template}/JS/React-dom 17.0.2 Comprimido.js"></script>
+<title>Calendário React</title>
+{/block}
+{block name=tronco}
+<div id="div_modelos" class="tag_oculta">
+  <div id="div_pagina_calendario_react">
+    <h2 id="h2_titulo_calendario_react">
+      <span>Calendário React</span>
+    </h2>
+    <div id="div_campos_que_selecionam_data">
+      <div id="div_do_campo_com_icone">
+        <p>
+          No campo abaixo o calendário feito com React é acionado ao clicar no ícone de calendário que está dentro do campo.
+        </p>
+        <input id="campo_com_icone" type="text"/>
+        <span id="span_calendario_para_o_campo_com_icone"></span>
+        <div id="div_calendario_para_o_campo_com_icone" class="tag_oculta">
+        </div>
+      </div>
+      <div id="div_do_campo_sem_icone">
+        <p>
+          No campo abaixo o calendário feito com React é acionado ao clicar no campo.
+        </p>
+        <input id="campo_sem_icone" type="text"/>
+        <div id="div_calendario_para_o_campo_sem_icone" class="tag_oculta">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="div_componente_pagina_calendario_react">
+  <script src="{$url_base_template}/JS/calendario_react/componente_pagina_calendario_react.js"></script>
+</div>
+{/block}
