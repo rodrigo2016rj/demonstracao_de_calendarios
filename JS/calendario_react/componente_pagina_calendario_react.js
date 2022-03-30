@@ -125,6 +125,7 @@ class ComponenteDivDoCampoComIcone extends React.Component{
           array_atributos["onChange"] = () => this.atualizar_este_componente();
         break;
         case "span_calendario_para_o_campo_com_icone":
+          array_atributos["onMouseDown"] = () => this.desfaz_selecao_de_texto();
           array_atributos["onClick"] = () => this.ativar_calendario();
         break;
         case "div_calendario_para_o_campo_com_icone":
@@ -184,6 +185,10 @@ class ComponenteDivDoCampoComIcone extends React.Component{
         o_componente_ja_foi_montado: this.state.o_componente_ja_foi_montado
       }
     );
+  }
+  
+  desfaz_selecao_de_texto(){
+    event.preventDefault();
   }
   
   ativar_calendario(){
