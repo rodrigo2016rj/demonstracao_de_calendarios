@@ -1,0 +1,45 @@
+#h2_titulo_pagina_inicial{
+  padding-top: 28px;
+  padding-right: 20px;
+  padding-left: 20px;
+  color: #703030;
+  text-align: center;
+}
+@media only screen and (max-device-width: 640px){
+  #h2_titulo_pagina_inicial{
+    padding-top: 20px;
+    font-size: 18pt;
+  }
+}
+#div_instrucoes_do_sistema{
+  margin-top: 25px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: calc(640px - 20px - 20px);
+  max-width: calc(100% - 20px - 20px);
+  color: #424242;
+  font-size: 14pt;
+}
+@media only screen and (max-device-width: 640px){
+  #div_instrucoes_do_sistema{
+    margin-top: 18px;
+    font-size: 12pt;
+  }
+}
+#div_instrucoes_do_sistema>p{
+  margin-top: 26px;
+  line-height: 28px;
+  text-indent: 70px;
+}
+@media only screen and (max-device-width: 640px){
+  #div_instrucoes_do_sistema>p{
+    margin-top: 18px;
+    line-height: 22px;
+    text-indent: 35px;
+  }
+}
+#div_instrucoes_do_sistema>p:first-child{
+  margin-top: 0px;
+}
