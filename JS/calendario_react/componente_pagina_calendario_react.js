@@ -427,31 +427,31 @@ class ComponenteCalendario extends React.Component{
           
           conteudo_dinamico = Array(0);
           var elemento_react_span = React.createElement("span", null, "Dom");
-          const elemento_react_div_domingo = React.createElement("span", {className: "celula_do_calendario"}, elemento_react_span);
+          const elemento_react_div_domingo = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_domingo);
           
           var elemento_react_span = React.createElement("span", null, "Seg");
-          const elemento_react_div_segunda = React.createElement("span", {className: "celula_do_calendario"}, elemento_react_span);
+          const elemento_react_div_segunda = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_segunda);
           
           var elemento_react_span = React.createElement("span", null, "Ter");
-          const elemento_react_div_terca = React.createElement("span", {className: "celula_do_calendario"}, elemento_react_span);
+          const elemento_react_div_terca = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_terca);
           
           var elemento_react_span = React.createElement("span", null, "Qua");
-          const elemento_react_div_quarta = React.createElement("span", {className: "celula_do_calendario"}, elemento_react_span);
+          const elemento_react_div_quarta = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_quarta);
           
           var elemento_react_span = React.createElement("span", null, "Qui");
-          const elemento_react_div_quinta = React.createElement("span", {className: "celula_do_calendario"}, elemento_react_span);
+          const elemento_react_div_quinta = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_quinta);
           
           var elemento_react_span = React.createElement("span", null, "Sex");
-          const elemento_react_div_sexta = React.createElement("span", {className: "celula_do_calendario"}, elemento_react_span);
+          const elemento_react_div_sexta = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_sexta);
           
           var elemento_react_span = React.createElement("span", null, "Sáb");
-          const elemento_react_div_sabado = React.createElement("span", {className: "celula_do_calendario"}, elemento_react_span);
+          const elemento_react_div_sabado = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_sabado);
           
           let numero_do_dia = 0;
