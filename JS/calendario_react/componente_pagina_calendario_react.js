@@ -1,17 +1,18 @@
 class ComponentePaginaCalendarioReact extends React.Component{
+  chave_do_react;
+  
   constructor(props){
     super(props);
     
-    const elemento = document.getElementById("div_pagina_calendario_react");
-    
     this.state = {
-      elemento_modelo: elemento.cloneNode(true)
+      elemento_modelo: props.elemento.cloneNode(true)
     }
     
-    elemento.remove();
+    props.elemento.remove();
   }
   
   render(){
+    this.chave_do_react = 1;
     return ["\n", this.html_para_react(this.state.elemento_modelo)];
   }
   
@@ -23,20 +24,27 @@ class ComponentePaginaCalendarioReact extends React.Component{
     if(typeof array_atributos !== "undefined"){
       for(let i = 0; i < array_atributos.length; i++){
         let atributo = array_atributos[i];
-        array_melhorado[atributo.nodeName] = atributo.nodeValue;
+        if(atributo.nodeName === "class"){
+          array_melhorado["className"] = atributo.nodeValue;
+        }else{
+          array_melhorado[atributo.nodeName] = atributo.nodeValue;
+        }
       }
     }
     array_atributos = array_melhorado;
+    
+    array_atributos["key"] = "ComponentePaginaCalendarioReact tag " + this.chave_do_react; //React precisa disso.
+    this.chave_do_react++;
     
     let conteudo_dinamico = "";
     if(typeof array_atributos["id"] !== "undefined"){
       switch(array_atributos["id"]){
         case "div_do_campo_com_icone":
-          elemento = React.createElement(ComponenteDivDoCampoComIcone, {elemento: elemento}, null);
+          elemento = React.createElement(ComponenteDivDoCampoComIcone, {key: "ComponenteDivDoCampoComIcone", elemento: elemento}, null);
           return elemento;
         break;
         case "div_do_campo_sem_icone":
-          elemento = React.createElement(ComponenteDivDoCampoSemIcone, {elemento: elemento}, null);
+          elemento = React.createElement(ComponenteDivDoCampoSemIcone, {key: "ComponenteDivDoCampoSemIcone", elemento: elemento}, null);
           return elemento;
         break;
       }
@@ -70,6 +78,8 @@ class ComponentePaginaCalendarioReact extends React.Component{
 }
 
 class ComponenteDivDoCampoComIcone extends React.Component{
+  chave_do_react;
+  
   constructor(props){
     super(props);
     
@@ -94,6 +104,7 @@ class ComponenteDivDoCampoComIcone extends React.Component{
   }
   
   render(){
+    this.chave_do_react = 1;
     return ["\n", this.html_para_react(this.state.elemento_modelo)];
   }
   
@@ -109,10 +120,17 @@ class ComponenteDivDoCampoComIcone extends React.Component{
     if(typeof array_atributos !== "undefined"){
       for(let i = 0; i < array_atributos.length; i++){
         let atributo = array_atributos[i];
-        array_melhorado[atributo.nodeName] = atributo.nodeValue;
+        if(atributo.nodeName === "class"){
+          array_melhorado["className"] = atributo.nodeValue;
+        }else{
+          array_melhorado[atributo.nodeName] = atributo.nodeValue;
+        }
       }
     }
     array_atributos = array_melhorado;
+    
+    array_atributos["key"] = "ComponenteDivDoCampoComIcone tag " + this.chave_do_react; //React precisa disso.
+    this.chave_do_react++;
     
     let conteudo_dinamico = "";
     if(typeof array_atributos["id"] !== "undefined"){
@@ -139,7 +157,7 @@ class ComponenteDivDoCampoComIcone extends React.Component{
             registrar_escolha_de_ano: () => this.registrar_escolha_de_ano(),
             confirmar_escolha: () => this.confirmar_escolha()
           }
-          elemento = React.createElement(ComponenteCalendario, {calendario: calendario, funcoes: funcoes}, null);
+          elemento = React.createElement(ComponenteCalendario, {key: "ComponenteCalendario do campo com ícone", calendario: calendario, funcoes: funcoes}, null);
           return elemento;
         break;
       }
@@ -352,6 +370,8 @@ class ComponenteDivDoCampoComIcone extends React.Component{
 }
 
 class ComponenteCalendario extends React.Component{
+  chave_do_react;
+  
   constructor(props){
     super(props);
     
@@ -363,6 +383,7 @@ class ComponenteCalendario extends React.Component{
   }
   
   render(){
+    this.chave_do_react = 1;
     return ["\n", this.html_para_react(this.state.elemento_modelo)];
   }
   
@@ -374,10 +395,17 @@ class ComponenteCalendario extends React.Component{
     if(typeof array_atributos !== "undefined"){
       for(let i = 0; i < array_atributos.length; i++){
         let atributo = array_atributos[i];
-        array_melhorado[atributo.nodeName] = atributo.nodeValue;
+        if(atributo.nodeName === "class"){
+          array_melhorado["className"] = atributo.nodeValue;
+        }else{
+          array_melhorado[atributo.nodeName] = atributo.nodeValue;
+        }
       }
     }
     array_atributos = array_melhorado;
+    
+    array_atributos["key"] = "ComponenteCalendario tag " + this.chave_do_react; //React precisa disso.
+    this.chave_do_react++;
     
     let conteudo_dinamico = "";
     if(typeof array_atributos["id"] !== "undefined"){
@@ -392,7 +420,7 @@ class ComponenteCalendario extends React.Component{
             }
             array_atributos["style"] = estilo;
           }
-          array_atributos["class"] = this.props.calendario.mostrar ? "calendario" : "calendario tag_oculta";
+          array_atributos["className"] = this.props.calendario.mostrar ? "calendario" : "calendario tag_oculta";
         break;
         case "caixa_de_selecao_de_ano_do_" + this.props.calendario.nome:
           const ano_alvo = this.props.calendario.ano_referencia;
@@ -402,14 +430,13 @@ class ComponenteCalendario extends React.Component{
           conteudo_dinamico = Array(0);
           for(let ano = menor_ano; ano <= maior_ano; ano++){
             var atributos = {
+              key: "option_ano_" + ano,
               value: ano
-            }
-            if(this.props.calendario.ano == ano){
-              atributos["selected"] = "selected";
             }
             var react_option = React.createElement("option", atributos, ano);
             conteudo_dinamico.push(react_option);
           }
+          array_atributos["value"] = this.props.calendario.ano;
           array_atributos["onChange"] = () => this.props.funcoes.registrar_escolha_de_ano();
         break;
         case "div_dias_do_" + this.props.calendario.nome:
@@ -426,32 +453,32 @@ class ComponenteCalendario extends React.Component{
           let posicao_do_dia_selecionado = this.props.calendario.dia - 1 + dia_da_semana_do_primeiro_dia_do_mes - 1 + posicao_inicial;
           
           conteudo_dinamico = Array(0);
-          var elemento_react_span = React.createElement("span", null, "Dom");
-          const elemento_react_div_domingo = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
+          var elemento_react_span = React.createElement("span", {key: "span_domingo"}, "Dom");
+          const elemento_react_div_domingo = React.createElement("div", {key: "div_domingo", className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_domingo);
           
-          var elemento_react_span = React.createElement("span", null, "Seg");
-          const elemento_react_div_segunda = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
+          var elemento_react_span = React.createElement("span", {key: "span_segunda"}, "Seg");
+          const elemento_react_div_segunda = React.createElement("div", {key: "div_segunda", className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_segunda);
           
-          var elemento_react_span = React.createElement("span", null, "Ter");
-          const elemento_react_div_terca = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
+          var elemento_react_span = React.createElement("span", {key: "span_terca"}, "Ter");
+          const elemento_react_div_terca = React.createElement("div", {key: "div_terca", className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_terca);
           
-          var elemento_react_span = React.createElement("span", null, "Qua");
-          const elemento_react_div_quarta = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
+          var elemento_react_span = React.createElement("span", {key: "span_quarta"}, "Qua");
+          const elemento_react_div_quarta = React.createElement("div", {key: "div_quarta", className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_quarta);
           
-          var elemento_react_span = React.createElement("span", null, "Qui");
-          const elemento_react_div_quinta = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
+          var elemento_react_span = React.createElement("span", {key: "span_quinta"}, "Qui");
+          const elemento_react_div_quinta = React.createElement("div", {key: "div_quinta", className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_quinta);
           
-          var elemento_react_span = React.createElement("span", null, "Sex");
-          const elemento_react_div_sexta = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
+          var elemento_react_span = React.createElement("span", {key: "span_sexta"}, "Sex");
+          const elemento_react_div_sexta = React.createElement("div", {key: "div_sexta", className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_sexta);
           
-          var elemento_react_span = React.createElement("span", null, "Sáb");
-          const elemento_react_div_sabado = React.createElement("div", {className: "celula_do_calendario"}, elemento_react_span);
+          var elemento_react_span = React.createElement("span", {key: "span_sabado"}, "Sáb");
+          const elemento_react_div_sabado = React.createElement("div", {key: "div_sabado", className: "celula_do_calendario"}, elemento_react_span);
           conteudo_dinamico.push(elemento_react_div_sabado);
           
           let numero_do_dia = 0;
@@ -463,7 +490,7 @@ class ComponenteCalendario extends React.Component{
             
             if(i >= posicao_do_primeiro_dia && i <= posicao_do_ultimo_dia){
               numero_do_dia++;
-              elemento_react_span = React.createElement("span", null, numero_do_dia);
+              elemento_react_span = React.createElement("span", {key: "span_dia_" + numero_do_dia}, numero_do_dia);
               elemento.classList.add("dia_do_calendario");
               if(i === posicao_do_dia_selecionado){
                 elemento.classList.add("dia_escolhido");
@@ -473,26 +500,16 @@ class ComponenteCalendario extends React.Component{
             }
             
             const on_clique = () => this.props.funcoes.registrar_escolha_de_dia();
-            var elemento_react_dia = React.createElement("div", {className: elemento.getAttribute("class"), onClick: on_clique}, elemento_react_span);
+            var elemento_react_dia = React.createElement("div", {key: "celula_do_calendario_" + i, className: elemento.getAttribute("class"), onClick: on_clique}, elemento_react_span);
             conteudo_dinamico.push(elemento_react_dia);
           }
         break;
         case "caixa_de_selecao_de_mes_do_" + this.props.calendario.nome:
+          array_atributos["value"] = this.props.calendario.mes;
           array_atributos["onChange"] = () => this.props.funcoes.registrar_escolha_de_mes();
         break;
         case "botao_confirmar_do_" + this.props.calendario.nome:
           array_atributos["onClick"] = () => this.props.funcoes.confirmar_escolha();
-        break;
-      }
-    }
-    if(typeof array_atributos["class"] !== "undefined"){
-      switch(array_atributos["class"]){
-        case "opcao_mes":
-          if(this.props.calendario.mes == elemento.value){
-            array_atributos["selected"] = "selected";
-          }else{
-            delete array_atributos["selected"];
-          }
         break;
       }
     }
@@ -524,6 +541,8 @@ class ComponenteCalendario extends React.Component{
 }
 
 class ComponenteDivDoCampoSemIcone extends React.Component{
+  chave_do_react;
+  
   constructor(props){
     super(props);
     
@@ -548,6 +567,7 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
   }
   
   render(){
+    this.chave_do_react = 1;
     return ["\n", this.html_para_react(this.state.elemento_modelo)];
   }
   
@@ -563,10 +583,17 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
     if(typeof array_atributos !== "undefined"){
       for(let i = 0; i < array_atributos.length; i++){
         let atributo = array_atributos[i];
-        array_melhorado[atributo.nodeName] = atributo.nodeValue;
+        if(atributo.nodeName === "class"){
+          array_melhorado["className"] = atributo.nodeValue;
+        }else{
+          array_melhorado[atributo.nodeName] = atributo.nodeValue;
+        }
       }
     }
     array_atributos = array_melhorado;
+    
+    array_atributos["key"] = "ComponenteDivDoCampoSemIcone tag " + this.chave_do_react; //React precisa disso.
+    this.chave_do_react++;
     
     let conteudo_dinamico = "";
     if(typeof array_atributos["id"] !== "undefined"){
@@ -590,7 +617,7 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
             registrar_escolha_de_ano: () => this.registrar_escolha_de_ano(),
             confirmar_escolha: () => this.confirmar_escolha()
           }
-          elemento = React.createElement(ComponenteCalendario, {calendario: calendario, funcoes: funcoes}, null);
+          elemento = React.createElement(ComponenteCalendario, {key: "ComponenteCalendario do campo sem ícone", calendario: calendario, funcoes: funcoes}, null);
           return elemento;
         break;
       }
@@ -798,7 +825,13 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
   }
 }
 
+const elemento = document.getElementById("div_pagina_calendario_react");
+
 ReactDOM.render(
-  React.createElement(ComponentePaginaCalendarioReact, null, null), 
+  React.createElement(
+    React.StrictMode,
+    null,
+    React.createElement(ComponentePaginaCalendarioReact, {elemento: elemento}, null)
+  ),
   document.getElementById("div_componente_pagina_calendario_react")
 );
