@@ -17,7 +17,6 @@ body{
 }
 .titulo_do_calendario{
   font-size: 14pt;
-  text-align: center;
 }
 .caixa_de_selecao_de_mes_do_calendario{
   margin-left: 9px;
