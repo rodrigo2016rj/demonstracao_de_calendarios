@@ -6,6 +6,7 @@
 <li>Calendário feito com Javascript puro, ou seja sem uso de frameworks para Javascript.</li>
 <li>Calendário feito com jQuery.</li>
 <li>Calendário feito com React.</li>
+<li>Calendário feito com Vue.</li>
 </ul>
 <p>Este sistema foi feito por mim, mas qualquer pessoa é livre para reutilizar e/ou modificar.</p>
 <br/>

@@ -1,0 +1,126 @@
+#h2_titulo_calendario_vue{
+  padding-top: 28px;
+  padding-right: 20px;
+  padding-left: 20px;
+  color: #707000;
+  text-align: center;
+}
+@media only screen and (max-device-width: 640px){
+  #h2_titulo_calendario_vue{
+    padding-top: 20px;
+    font-size: 18pt;
+  }
+}
+
+#div_campos_que_selecionam_data{
+  margin-top: 35px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: calc(640px - 20px - 20px);
+  max-width: calc(100% - 20px - 20px);
+  color: #424242;
+  font-size: 14pt;
+}
+@media only screen and (max-device-width: 640px){
+  #div_campos_que_selecionam_data{
+    margin-top: 22px;
+    font-size: 12pt;
+  }
+}
+#div_campos_que_selecionam_data p{
+  margin-top: 26px;
+  line-height: 28px;
+  text-indent: 70px;
+}
+@media only screen and (max-device-width: 640px){
+  #div_campos_que_selecionam_data p{
+    margin-top: 18px;
+    line-height: 22px;
+    text-indent: 35px;
+  }
+}
+#div_campos_que_selecionam_data p:first-child{
+  margin-top: 0px;
+}
+
+#div_do_campo_com_icone{
+  overflow: hidden;
+}
+#campo_com_icone{
+  margin-top: 8px;
+  margin-left: 70px;
+}
+@media only screen and (max-device-width: 640px){
+  #campo_com_icone{
+    margin-left: 35px;
+  }
+}
+#span_calendario_para_o_campo_com_icone{
+  display: inline-block;
+  position: absolute;
+  margin-top: 9px;
+  margin-left: calc(-25px - 2px);
+  width: 25px;
+  height: 25px;
+  vertical-align: top;
+  background-image: url("../../Imagens/Ícones/Ícone de Calendário - Amarelo Sem Fundo 25x25.png");
+  background-size: cover;
+  cursor: pointer;
+}
+#div_seletor_de_data_para_o_campo_com_icone{
+  margin-left: 70px;
+  min-width: 347px;
+  max-width: 347px;
+  color: #303030;
+  font-size: 12pt;
+}
+@media only screen and (max-device-width: 640px){
+  #div_seletor_de_data_para_o_campo_com_icone{
+    margin-left: 35px;
+  }
+}
+@media only screen and (max-device-width: 480px){
+  #div_seletor_de_data_para_o_campo_com_icone{
+    float: left;
+    margin-left: calc(50% - 346px / 2);
+  }
+}
+
+#div_do_campo_sem_icone{
+  margin-top: 50px;
+  overflow: hidden;
+}
+@media only screen and (max-device-width: 640px){
+  #div_do_campo_sem_icone{
+    margin-top: 28px;
+  }
+}
+#campo_sem_icone{
+  margin-top: 8px;
+  margin-left: 70px;
+}
+@media only screen and (max-device-width: 640px){
+  #campo_sem_icone{
+    margin-left: 35px;
+  }
+}
+#div_seletor_de_data_para_o_campo_sem_icone{
+  margin-left: 70px;
+  min-width: 347px;
+  max-width: 347px;
+  color: #303030;
+  font-size: 12pt;
+}
+@media only screen and (max-device-width: 640px){
+  #div_seletor_de_data_para_o_campo_sem_icone{
+    margin-left: 35px;
+  }
+}
+@media only screen and (max-device-width: 480px){
+  #div_seletor_de_data_para_o_campo_sem_icone{
+    float: left;
+    margin-left: calc(50% - 346px / 2);
+  }
+}

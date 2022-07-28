@@ -1,0 +1,86 @@
+body{
+  margin: 0px;
+  background: #FFF;
+  color: #202020;
+  font-family: Verdana, Tahoma, Times New Roman, serif;
+  font-size: 12pt;
+}
+#h1_teste{
+  margin: 0px;
+  padding-top: 30px;
+  font-size: 28pt;
+  font-weight: normal;
+  text-align: center;
+}
+#div_do_campo_com_icone{
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  min-width: 347px;
+  max-width: 347px;
+}
+#div_do_campo_sem_icone{
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  min-width: 347px;
+  max-width: 347px;
+}
+
+.calendario{
+  margin-top: 6px;
+  border: 1px solid #B0B0B0;
+  padding: 12px 8px;
+  min-width: calc(347px - 2px - 16px);
+  max-width: calc(347px - 2px - 16px);
+  background-color: #FDFDFD;
+  z-index: 1;
+}
+.titulo_do_calendario{
+  font-size: 14pt;
+}
+.caixa_de_selecao_de_mes_do_calendario{
+  margin-left: 9px;
+  width: 120px;
+}
+.caixa_de_selecao_de_ano_do_calendario{
+  margin-left: 9px;
+  width: 80px;
+}
+.corpo_do_calendario{
+  margin-top: 12px;
+}
+.dias_do_calendario{
+  min-width: 329px;
+  max-width: 329px;
+  overflow: hidden;
+}
+.celula_do_calendario{
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 3px;
+  border: 1px solid transparent;
+  min-width: calc(47px - 5px - 2px);
+  max-width: calc(47px - 5px - 2px);
+  min-height: 23px;
+  max-height: 23px;
+  text-align: center;
+}
+.dia_do_calendario>span{
+  position: relative;
+  top: 2px;
+}
+.dia_do_calendario:hover{
+  border: 1px solid #000;
+  cursor: pointer;
+}
+.dia_escolhido,
+.dia_escolhido:hover{
+  border: 1px solid #000;
+  background-color: #000;
+  color: #FFF;
+}
+.botoes_do_calendario{
+  margin-top: 2px;
+  text-align: right;
+}

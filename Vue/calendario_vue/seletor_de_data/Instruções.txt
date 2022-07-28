@@ -1,0 +1,44 @@
+Caso queira testar as modificações feitas no arquivo seletor_de_data.vue, 
+utilize a linha de comando em um terminal:
+
+npm run dev
+
+Graças ao arquivo package.json, o vite será utilizado pelo node para executar o "vite".
+
+Isso fará com que você possa testar seu arquivo vue enquanto modifica ele (hot update).
+
+Será mostrado no terminal um endereço no qual você 
+poderá verificar suas modificações pelo navegador:
+
+http://127.0.0.1:PORTA
+
+Porém, será preciso acessar da seguinte forma:
+
+http://127.0.0.1:PORTA/teste/teste.html
+
+Substitua PORTA pela porta que foi indicada no seu terminal.
+
+Nota: Se quiser encerrar o processo que está rodando, você só 
+precisa teclar Ctrl C no seu terminal. Para executar o processo 
+novamente é só utilizar o comando npm run dev novamente.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Toda vez que terminar de modificar o arquivo seletor_de_data.vue, 
+utilize a linha de comando em um terminal:
+
+npm run build
+
+Graças ao arquivo package.json, o vite será utilizado pelo node para executar o "vite build".
+
+Isso fará com que a pasta dist seja deletada e criada novamente com as modificações.
+
+Atualize seu arquivo calendario_vue.html (local: HTML/calendario_vue) para utilizar 
+o arquivo javascript que foi criado (local: Vue/calendario_vue/seletor_de_data/dist/assets). 
+Geralmente só precisa mudar o hash.
+
+Exemplo, no arquivo calendario_vue.html (local: HTML/calendario_vue) tem:
+<script type="module" src="{$url_base_template}/Vue/calendario_vue/seletor_de_data/dist/assets/seletor_de_data.e36f2c55.js"></script>
+Após utilizar o comando npm run build, substitua o hash antigo (e36f2c55 no exemplo) pelo novo hash.
+
+Após estes passos, este componente Vue já estará pronto para funcionar em um servidor web, 
+seja na sua máquina, ou em um ambiente de produção corretamente configurado.
