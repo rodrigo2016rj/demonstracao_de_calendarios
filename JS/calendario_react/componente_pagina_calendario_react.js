@@ -229,7 +229,7 @@ class ComponenteDivDoCampoComIcone extends React.Component{
   atualizar_todo_o_calendario(){
     const valor = this.state.valor;
     
-    if(valor !== null && valor.match(/^\d{2}\/\d{2}\/\d{4}$/)){
+    if(valor !== null && valor.match(/^\d{2}\/(0[1-9]|1[0-2])\/\d{4}$/)){
       this.state.calendario.valor = valor;
       
       let dia = valor.substring(0, 2);
@@ -685,7 +685,7 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
   atualizar_todo_o_calendario(){
     const valor = this.state.valor;
     
-    if(valor !== null && valor.match(/^\d{2}\/\d{2}\/\d{4}$/)){
+    if(valor !== null && valor.match(/^\d{2}\/(0[1-9]|1[0-2])\/\d{4}$/)){
       this.state.calendario.valor = valor;
       
       let dia = valor.substring(0, 2);

@@ -28,7 +28,7 @@ export default{
       let total_de_dias_do_mes;
       let ano;
       
-      if(valor !== null && valor.match(/^\d{2}\/\d{2}\/\d{4}$/)){
+      if(valor !== null && valor.match(/^\d{2}\/(0[1-9]|1[0-2])\/\d{4}$/)){
         dia = valor.substring(0, 2);
         mes = valor.substring(3, 5);
         ano = valor.substring(6, 10);

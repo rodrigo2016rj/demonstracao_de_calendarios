@@ -37,8 +37,8 @@ o arquivo javascript que foi criado (local: Vue/calendario_vue/seletor_de_data/d
 Geralmente só precisa mudar o hash.
 
 Exemplo, no arquivo calendario_vue.html (local: HTML/calendario_vue) tem:
-<script type="module" src="{$url_base_template}/Vue/calendario_vue/seletor_de_data/dist/assets/seletor_de_data.e36f2c55.js"></script>
-Após utilizar o comando npm run build, substitua o hash antigo (e36f2c55 no exemplo) pelo novo hash.
+<script type="module" src="{$url_base_template}/Vue/calendario_vue/seletor_de_data/dist/assets/seletor_de_data.fe93ed83.js"></script>
+Após utilizar o comando npm run build, substitua o hash antigo (fe93ed83 no exemplo) pelo novo hash.
 
 Após estes passos, este componente Vue já estará pronto para funcionar em um servidor web, 
 seja na sua máquina, ou em um ambiente de produção corretamente configurado.
