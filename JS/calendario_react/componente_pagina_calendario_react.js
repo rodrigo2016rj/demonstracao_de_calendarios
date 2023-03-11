@@ -90,7 +90,6 @@ class ComponenteDivDoCampoComIcone extends React.Component{
       valor: null, //Valor do campo_com_icone
       calendario: {
         nome: "calendario_para_o_campo_com_icone",
-        mostrar: false,
         valor: null, //String da data
         dia: null, //Número do dia
         mes: null, //Número do mês
@@ -144,7 +143,7 @@ class ComponenteDivDoCampoComIcone extends React.Component{
         break;
         case "span_calendario_para_o_campo_com_icone":
           array_atributos["onMouseDown"] = () => this.desfaz_selecao_de_texto();
-          array_atributos["onClick"] = () => this.ativar_calendario();
+          array_atributos["onClick"] = () => this.atualizar_o_calendario();
         break;
         case "div_calendario_para_o_campo_com_icone":
           if(this.state.atualiza_todo_o_calendario){
@@ -209,10 +208,8 @@ class ComponenteDivDoCampoComIcone extends React.Component{
     event.preventDefault();
   }
   
-  ativar_calendario(){
-    this.state.calendario.mostrar = !this.state.calendario.mostrar;
-    
-    this.state.atualiza_todo_o_calendario = false;
+  atualizar_o_calendario(){
+    this.state.atualiza_todo_o_calendario = true;
     
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
@@ -352,8 +349,6 @@ class ComponenteDivDoCampoComIcone extends React.Component{
     this.state.calendario.valor = valor;
     this.state.valor = valor;
     
-    this.state.calendario.mostrar = false;
-    
     this.state.atualiza_todo_o_calendario = false;
     
     /* Chamando o método setState para renderizar o componente novamente. */
@@ -371,6 +366,7 @@ class ComponenteDivDoCampoComIcone extends React.Component{
 
 class ComponenteCalendario extends React.Component{
   chave_do_react;
+  react_referencia_calendario;
   
   constructor(props){
     super(props);
@@ -380,11 +376,92 @@ class ComponenteCalendario extends React.Component{
     this.state = {
       elemento_modelo: elemento.cloneNode(true)
     }
+    
+    this.react_referencia_calendario = React.createRef();
   }
   
   render(){
     this.chave_do_react = 1;
     return ["\n", this.html_para_react(this.state.elemento_modelo)];
+  }
+  
+  componentDidMount(){
+    switch(this.react_referencia_calendario.current.id){
+      case "div_calendario_para_o_campo_com_icone":
+        if(typeof window.evento_do_calendario_para_o_campo_com_icone_ja_foi_adicionado === "undefined"){
+          window.evento_do_calendario_para_o_campo_com_icone_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+          window.addEventListener("click", function(evento){
+            let tag_alvo = evento.target;
+            
+            while(true){
+              if(tag_alvo === null || !tag_alvo.tagName){
+                this.react_referencia_calendario.current.classList.add("tag_oculta");
+                break;
+              }
+              
+              if(tag_alvo.id === "campo_com_icone"){
+                break;
+              }
+              
+              if(tag_alvo.id === "span_calendario_para_o_campo_com_icone"){
+                if(this.react_referencia_calendario.current.classList.contains("tag_oculta")){
+                  this.react_referencia_calendario.current.classList.remove("tag_oculta");
+                }else{
+                  this.react_referencia_calendario.current.classList.add("tag_oculta");
+                }
+                break;
+              }
+              
+              if(tag_alvo.classList.contains("botao_do_calendario")){
+                this.react_referencia_calendario.current.classList.add("tag_oculta");
+                break;
+              }
+              
+              if(tag_alvo.classList.contains("calendario")){
+                break;
+              }
+              
+              tag_alvo = tag_alvo.parentNode;
+            }
+          }.bind(this));
+        }
+      break;
+      case "div_calendario_para_o_campo_sem_icone":
+        if(typeof window.evento_do_calendario_para_o_campo_sem_icone_ja_foi_adicionado === "undefined"){
+          window.evento_do_calendario_para_o_campo_sem_icone_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+          window.addEventListener("click", function(evento){
+            let tag_alvo = evento.target;
+            
+            while(true){
+              if(tag_alvo === null || !tag_alvo.tagName){
+                this.react_referencia_calendario.current.classList.add("tag_oculta");
+                break;
+              }
+              
+              if(tag_alvo.id === "campo_sem_icone"){
+                if(this.react_referencia_calendario.current.classList.contains("tag_oculta")){
+                  this.react_referencia_calendario.current.classList.remove("tag_oculta");
+                }else{
+                  this.react_referencia_calendario.current.classList.add("tag_oculta");
+                }
+                break;
+              }
+              
+              if(tag_alvo.classList.contains("botao_do_calendario")){
+                this.react_referencia_calendario.current.classList.add("tag_oculta");
+                break;
+              }
+              
+              if(tag_alvo.classList.contains("calendario")){
+                break;
+              }
+              
+              tag_alvo = tag_alvo.parentNode;
+            }
+          }.bind(this));
+        }
+      break;
+    }
   }
   
   html_para_react(elemento){
@@ -420,7 +497,7 @@ class ComponenteCalendario extends React.Component{
             }
             array_atributos["style"] = estilo;
           }
-          array_atributos["className"] = this.props.calendario.mostrar ? "calendario" : "calendario tag_oculta";
+          array_atributos["ref"] = this.react_referencia_calendario;
         break;
         case "caixa_de_selecao_de_ano_do_" + this.props.calendario.nome:
           const ano_alvo = this.props.calendario.ano_referencia;
@@ -553,7 +630,6 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
       valor: null, //Valor do campo_sem_icone
       calendario: {
         nome: "calendario_para_o_campo_sem_icone",
-        mostrar: false,
         valor: null, //String da data
         dia: null, //Número do dia
         mes: null, //Número do mês
@@ -604,7 +680,7 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
           }
           array_atributos["value"] = this.state.valor;
           array_atributos["onChange"] = () => this.atualizar_este_componente();
-          array_atributos["onClick"] = () => this.ativar_calendario();
+          array_atributos["onClick"] = () => this.atualizar_o_calendario();
         break;
         case "div_calendario_para_o_campo_sem_icone":
           if(this.state.atualiza_todo_o_calendario){
@@ -665,10 +741,8 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
     );
   }
   
-  ativar_calendario(){
-    this.state.calendario.mostrar = !this.state.calendario.mostrar;
-    
-    this.state.atualiza_todo_o_calendario = false;
+  atualizar_o_calendario(){
+    this.state.atualiza_todo_o_calendario = true;
     
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
@@ -807,8 +881,6 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
     const valor = dia + "/" + mes + "/" + ano;
     this.state.calendario.valor = valor;
     this.state.valor = valor;
-    
-    this.state.calendario.mostrar = false;
     
     this.state.atualiza_todo_o_calendario = false;
     
