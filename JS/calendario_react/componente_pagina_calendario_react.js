@@ -101,6 +101,8 @@ class ComponenteDivDoCampoComIcone extends React.Component{
       o_componente_ja_foi_montado: false
     }
     
+    this.colocar_estilo_hover_no_fundo_do_campo = this.colocar_estilo_hover_no_fundo_do_campo.bind(this);
+    this.colocar_estilo_normal_no_fundo_do_campo = this.colocar_estilo_normal_no_fundo_do_campo.bind(this);
     this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
     this.desfaz_selecao_de_texto = this.desfaz_selecao_de_texto.bind(this);
     this.atualizar_o_calendario = this.atualizar_o_calendario.bind(this);
@@ -147,9 +149,13 @@ class ComponenteDivDoCampoComIcone extends React.Component{
             this.state.valor = elemento.value;
           }
           array_atributos["value"] = this.state.valor;
+          array_atributos["onMouseEnter"] = this.colocar_estilo_hover_no_fundo_do_campo;
+          array_atributos["onMouseLeave"] = this.colocar_estilo_normal_no_fundo_do_campo;
           array_atributos["onChange"] = this.atualizar_este_componente;
         break;
         case "span_calendario_para_o_campo_com_icone":
+          array_atributos["onMouseEnter"] = this.colocar_estilo_hover_no_fundo_do_campo;
+          array_atributos["onMouseLeave"] = this.colocar_estilo_normal_no_fundo_do_campo;
           array_atributos["onMouseDown"] = this.desfaz_selecao_de_texto;
           array_atributos["onClick"] = this.atualizar_o_calendario;
         break;
@@ -193,6 +199,28 @@ class ComponenteDivDoCampoComIcone extends React.Component{
     }
     
     return elemento_react;
+  }
+  
+  colocar_estilo_hover_no_fundo_do_campo(evento){
+    let tag_alvo = evento.target;
+    
+    if(tag_alvo.id === "span_calendario_para_o_campo_com_icone"){
+      tag_alvo = tag_alvo.parentNode.querySelector("#campo_com_icone");
+    }
+    if(tag_alvo.id === "campo_com_icone"){
+      tag_alvo.style.backgroundColor = "#F8F8F8";
+    }
+  }
+  
+  colocar_estilo_normal_no_fundo_do_campo(evento){
+    let tag_alvo = evento.target;
+    
+    if(tag_alvo.id === "span_calendario_para_o_campo_com_icone"){
+      tag_alvo = tag_alvo.parentNode.querySelector("#campo_com_icone");
+    }
+    if(tag_alvo.id === "campo_com_icone"){
+      tag_alvo.style.backgroundColor = "#FFF";
+    }
   }
   
   atualizar_este_componente(evento){
