@@ -100,6 +100,14 @@ class ComponenteDivDoCampoComIcone extends React.Component{
       atualiza_todo_o_calendario: true,
       o_componente_ja_foi_montado: false
     }
+    
+    this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
+    this.desfaz_selecao_de_texto = this.desfaz_selecao_de_texto.bind(this);
+    this.atualizar_o_calendario = this.atualizar_o_calendario.bind(this);
+    this.registrar_escolha_de_dia = this.registrar_escolha_de_dia.bind(this);
+    this.registrar_escolha_de_mes = this.registrar_escolha_de_mes.bind(this);
+    this.registrar_escolha_de_ano = this.registrar_escolha_de_ano.bind(this);
+    this.confirmar_escolha = this.confirmar_escolha.bind(this);
   }
   
   render(){
@@ -139,11 +147,11 @@ class ComponenteDivDoCampoComIcone extends React.Component{
             this.state.valor = elemento.value;
           }
           array_atributos["value"] = this.state.valor;
-          array_atributos["onChange"] = () => this.atualizar_este_componente();
+          array_atributos["onChange"] = this.atualizar_este_componente;
         break;
         case "span_calendario_para_o_campo_com_icone":
-          array_atributos["onMouseDown"] = () => this.desfaz_selecao_de_texto();
-          array_atributos["onClick"] = () => this.atualizar_o_calendario();
+          array_atributos["onMouseDown"] = this.desfaz_selecao_de_texto;
+          array_atributos["onClick"] = this.atualizar_o_calendario;
         break;
         case "div_calendario_para_o_campo_com_icone":
           if(this.state.atualiza_todo_o_calendario){
@@ -151,10 +159,10 @@ class ComponenteDivDoCampoComIcone extends React.Component{
           }
           const calendario = this.state.calendario;
           const funcoes = {
-            registrar_escolha_de_dia: () => this.registrar_escolha_de_dia(),
-            registrar_escolha_de_mes: () => this.registrar_escolha_de_mes(),
-            registrar_escolha_de_ano: () => this.registrar_escolha_de_ano(),
-            confirmar_escolha: () => this.confirmar_escolha()
+            registrar_escolha_de_dia: this.registrar_escolha_de_dia,
+            registrar_escolha_de_mes: this.registrar_escolha_de_mes,
+            registrar_escolha_de_ano: this.registrar_escolha_de_ano,
+            confirmar_escolha: this.confirmar_escolha
           }
           elemento = React.createElement(ComponenteCalendario, {key: "ComponenteCalendario do campo com ícone", calendario: calendario, funcoes: funcoes}, null);
           return elemento;
@@ -187,8 +195,8 @@ class ComponenteDivDoCampoComIcone extends React.Component{
     return elemento_react;
   }
   
-  atualizar_este_componente(){
-    this.state.valor = event.target.value;
+  atualizar_este_componente(evento){
+    this.state.valor = evento.target.value;
     
     this.state.atualiza_todo_o_calendario = true;
     
@@ -204,11 +212,11 @@ class ComponenteDivDoCampoComIcone extends React.Component{
     );
   }
   
-  desfaz_selecao_de_texto(){
-    event.preventDefault();
+  desfaz_selecao_de_texto(evento){
+    evento.preventDefault();
   }
   
-  atualizar_o_calendario(){
+  atualizar_o_calendario(evento){
     this.state.atualiza_todo_o_calendario = true;
     
     /* Chamando o método setState para renderizar o componente novamente. */
@@ -264,8 +272,8 @@ class ComponenteDivDoCampoComIcone extends React.Component{
     }
   }
   
-  registrar_escolha_de_dia(){
-    const texto_do_dia = event.target.innerText;
+  registrar_escolha_de_dia(evento){
+    const texto_do_dia = evento.target.innerText;
     if(texto_do_dia === null || texto_do_dia === ""){
       return;
     }
@@ -285,8 +293,8 @@ class ComponenteDivDoCampoComIcone extends React.Component{
     );
   }
   
-  registrar_escolha_de_mes(){
-    this.state.calendario.mes = parseInt(event.target.value, 10);
+  registrar_escolha_de_mes(evento){
+    this.state.calendario.mes = parseInt(evento.target.value, 10);
     
     this.state.calendario.dias = new Date(this.state.calendario.ano, this.state.calendario.mes, 0).getDate();
     
@@ -308,8 +316,8 @@ class ComponenteDivDoCampoComIcone extends React.Component{
     );
   }
   
-  registrar_escolha_de_ano(){
-    this.state.calendario.ano = parseInt(event.target.value, 10);
+  registrar_escolha_de_ano(evento){
+    this.state.calendario.ano = parseInt(evento.target.value, 10);
     
     this.state.calendario.dias = new Date(this.state.calendario.ano, this.state.calendario.mes, 0).getDate();
     
@@ -331,7 +339,7 @@ class ComponenteDivDoCampoComIcone extends React.Component{
     );
   }
   
-  confirmar_escolha(){
+  confirmar_escolha(evento){
     let dia = this.state.calendario.dia;
     if(dia < 10){
       dia = "0" + dia;
@@ -514,7 +522,7 @@ class ComponenteCalendario extends React.Component{
             conteudo_dinamico.push(react_option);
           }
           array_atributos["value"] = this.props.calendario.ano;
-          array_atributos["onChange"] = () => this.props.funcoes.registrar_escolha_de_ano();
+          array_atributos["onChange"] = this.props.funcoes.registrar_escolha_de_ano;
         break;
         case "div_dias_do_" + this.props.calendario.nome:
           if(this.props.calendario.dia > this.props.calendario.dias){
@@ -576,17 +584,17 @@ class ComponenteCalendario extends React.Component{
               elemento.classList.add("tag_oculta");
             }
             
-            const on_clique = () => this.props.funcoes.registrar_escolha_de_dia();
+            const on_clique = this.props.funcoes.registrar_escolha_de_dia;
             var elemento_react_dia = React.createElement("div", {key: "celula_do_calendario_" + i, className: elemento.getAttribute("class"), onClick: on_clique}, elemento_react_span);
             conteudo_dinamico.push(elemento_react_dia);
           }
         break;
         case "caixa_de_selecao_de_mes_do_" + this.props.calendario.nome:
           array_atributos["value"] = this.props.calendario.mes;
-          array_atributos["onChange"] = () => this.props.funcoes.registrar_escolha_de_mes();
+          array_atributos["onChange"] = this.props.funcoes.registrar_escolha_de_mes;
         break;
         case "botao_confirmar_do_" + this.props.calendario.nome:
-          array_atributos["onClick"] = () => this.props.funcoes.confirmar_escolha();
+          array_atributos["onClick"] = this.props.funcoes.confirmar_escolha;
         break;
       }
     }
@@ -640,6 +648,13 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
       atualiza_todo_o_calendario: true,
       o_componente_ja_foi_montado: false
     }
+    
+    this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
+    this.atualizar_o_calendario = this.atualizar_o_calendario.bind(this);
+    this.registrar_escolha_de_dia = this.registrar_escolha_de_dia.bind(this);
+    this.registrar_escolha_de_mes = this.registrar_escolha_de_mes.bind(this);
+    this.registrar_escolha_de_ano = this.registrar_escolha_de_ano.bind(this);
+    this.confirmar_escolha = this.confirmar_escolha.bind(this);
   }
   
   render(){
@@ -679,8 +694,8 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
             this.state.valor = elemento.value;
           }
           array_atributos["value"] = this.state.valor;
-          array_atributos["onChange"] = () => this.atualizar_este_componente();
-          array_atributos["onClick"] = () => this.atualizar_o_calendario();
+          array_atributos["onChange"] = this.atualizar_este_componente;
+          array_atributos["onClick"] = this.atualizar_o_calendario;
         break;
         case "div_calendario_para_o_campo_sem_icone":
           if(this.state.atualiza_todo_o_calendario){
@@ -688,10 +703,10 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
           }
           const calendario = this.state.calendario;
           const funcoes = {
-            registrar_escolha_de_dia: () => this.registrar_escolha_de_dia(),
-            registrar_escolha_de_mes: () => this.registrar_escolha_de_mes(),
-            registrar_escolha_de_ano: () => this.registrar_escolha_de_ano(),
-            confirmar_escolha: () => this.confirmar_escolha()
+            registrar_escolha_de_dia: this.registrar_escolha_de_dia,
+            registrar_escolha_de_mes: this.registrar_escolha_de_mes,
+            registrar_escolha_de_ano: this.registrar_escolha_de_ano,
+            confirmar_escolha: this.confirmar_escolha
           }
           elemento = React.createElement(ComponenteCalendario, {key: "ComponenteCalendario do campo sem ícone", calendario: calendario, funcoes: funcoes}, null);
           return elemento;
@@ -724,8 +739,8 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
     return elemento_react;
   }
   
-  atualizar_este_componente(){
-    this.state.valor = event.target.value;
+  atualizar_este_componente(evento){
+    this.state.valor = evento.target.value;
     
     this.state.atualiza_todo_o_calendario = true;
     
@@ -741,7 +756,7 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
     );
   }
   
-  atualizar_o_calendario(){
+  atualizar_o_calendario(evento){
     this.state.atualiza_todo_o_calendario = true;
     
     /* Chamando o método setState para renderizar o componente novamente. */
@@ -797,8 +812,8 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
     }
   }
   
-  registrar_escolha_de_dia(){
-    const texto_do_dia = event.target.innerText;
+  registrar_escolha_de_dia(evento){
+    const texto_do_dia = evento.target.innerText;
     if(texto_do_dia === null || texto_do_dia === ""){
       return;
     }
@@ -818,8 +833,8 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
     );
   }
   
-  registrar_escolha_de_mes(){
-    this.state.calendario.mes = parseInt(event.target.value, 10);
+  registrar_escolha_de_mes(evento){
+    this.state.calendario.mes = parseInt(evento.target.value, 10);
     
     this.state.calendario.dias = new Date(this.state.calendario.ano, this.state.calendario.mes, 0).getDate();
     
@@ -841,8 +856,8 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
     );
   }
   
-  registrar_escolha_de_ano(){
-    this.state.calendario.ano = parseInt(event.target.value, 10);
+  registrar_escolha_de_ano(evento){
+    this.state.calendario.ano = parseInt(evento.target.value, 10);
     
     this.state.calendario.dias = new Date(this.state.calendario.ano, this.state.calendario.mes, 0).getDate();
     
@@ -864,7 +879,7 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
     );
   }
   
-  confirmar_escolha(){
+  confirmar_escolha(evento){
     let dia = this.state.calendario.dia;
     if(dia < 10){
       dia = "0" + dia;
