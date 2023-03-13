@@ -16,7 +16,7 @@ export default{
     }
   },
   created(){
-    this.campo.addEventListener("keyup", function(){
+    this.campo.addEventListener("input", function(){
       this.atualizar_calendario();
     }.bind(this));
     this.atualizar_calendario();
