@@ -8,12 +8,15 @@ window.addEventListener("load", function(){
   let ocultar_seletor_de_data_para_o_campo_com_icone = true;
   let ocultar_seletor_de_data_para_o_campo_sem_icone = true;
   
+  campo_com_icone.addEventListener("click", function(){
+    ocultar_seletor_de_data_para_o_campo_com_icone = false;
+  });
   span_calendario_para_o_campo_com_icone.addEventListener("click", function(){
-    ocultar_seletor_de_data_para_o_campo_com_icone = !ocultar_seletor_de_data_para_o_campo_com_icone;
-    if(ocultar_seletor_de_data_para_o_campo_com_icone){
-      div_seletor_de_data_para_o_campo_com_icone.classList.add("tag_oculta");
-    }else{
+    if(div_seletor_de_data_para_o_campo_com_icone.classList.contains("tag_oculta")){
       div_seletor_de_data_para_o_campo_com_icone.classList.remove("tag_oculta");
+      ocultar_seletor_de_data_para_o_campo_com_icone = false;
+    }else{
+      ocultar_seletor_de_data_para_o_campo_com_icone = true;
     }
   });
   span_calendario_para_o_campo_com_icone.addEventListener("mouseenter", function(){
@@ -21,11 +24,11 @@ window.addEventListener("load", function(){
   });
   
   campo_sem_icone.addEventListener("click", function(){
-    ocultar_seletor_de_data_para_o_campo_sem_icone = !ocultar_seletor_de_data_para_o_campo_sem_icone;
-    if(ocultar_seletor_de_data_para_o_campo_sem_icone){
-      div_seletor_de_data_para_o_campo_sem_icone.classList.add("tag_oculta");
-    }else{
+    if(div_seletor_de_data_para_o_campo_sem_icone.classList.contains("tag_oculta")){
       div_seletor_de_data_para_o_campo_sem_icone.classList.remove("tag_oculta");
+      ocultar_seletor_de_data_para_o_campo_sem_icone = false;
+    }else{
+      ocultar_seletor_de_data_para_o_campo_sem_icone = true;
     }
   });
   

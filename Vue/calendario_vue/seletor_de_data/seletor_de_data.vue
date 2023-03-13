@@ -6,6 +6,7 @@ export default{
   data(){
     return{
       campo: document.getElementById(this.id_do_campo),
+      icone_do_campo: document.getElementById("span_calendario_para_o_" + this.id_do_campo),
       anos: new Array (0),
       celulas: new Array (42),
       dia: null,
@@ -149,6 +150,11 @@ export default{
       this.campo.value = data;
       
       this.campo.dispatchEvent(new Event("input"));
+      if(this.icone_do_campo !== null){
+        this.icone_do_campo.click();
+      }else{
+        this.campo.click();
+      }
     }
   }
 }
