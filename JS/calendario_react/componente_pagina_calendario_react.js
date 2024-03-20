@@ -940,13 +940,14 @@ class ComponenteDivDoCampoSemIcone extends React.Component{
   }
 }
 
-const elemento = document.getElementById("div_pagina_calendario_react");
+const div_pagina_calendario_react = document.getElementById("div_pagina_calendario_react");
+const div_componente_pagina_calendario_react = document.getElementById("div_componente_pagina_calendario_react");
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(div_componente_pagina_calendario_react);
+root.render(
   React.createElement(
     React.StrictMode,
     null,
-    React.createElement(ComponentePaginaCalendarioReact, {elemento: elemento}, null)
-  ),
-  document.getElementById("div_componente_pagina_calendario_react")
+    React.createElement(ComponentePaginaCalendarioReact, {elemento: div_pagina_calendario_react}, null)
+  )
 );

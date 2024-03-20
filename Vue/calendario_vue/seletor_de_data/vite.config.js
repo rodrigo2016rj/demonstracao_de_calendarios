@@ -12,5 +12,8 @@ export default defineConfig({
         dir: "./dist"
       }
     }
+  },
+  server: {
+    host: "127.0.0.1"
   }
 });
